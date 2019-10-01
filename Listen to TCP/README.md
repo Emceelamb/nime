@@ -16,4 +16,68 @@ What is interesting about the project is that it sonifies in real time the data 
 
 I also think that it could be an interesting teaching tool to visualize computer networking concepts. In an ideal world the sounds would be quite predictible in a 1-2-1 kind of pattern. However because of packet loss and latency this is not the case.
 
+<video width="320" height="240" controls>
+  <source src="listen1.MOV" type="video/mp4">
+Your browser does not support the video tag.
+</video> 
 
+<video width="320" height="240" controls>
+  <source src="listen2.MOV" type="video/mp4">
+Your browser does not support the video tag.
+</video> 
+
+<video width="320" height="240" controls>
+  <source src="listen3.MOV" type="video/ogg">
+Your browser does not support the video tag.
+</video> 
+
+<video width="320" height="240" controls>
+  <source src="listen4.MOV" type="video/mp4">
+Your browser does not support the video tag.
+</video> 
+
+Sample of raw packet capture: 
+
+```
+ 16 10.818188414 192.168.8.128 → 192.168.8.1  TCP 74 38962 → 80 [SYN] Seq=0 Win=29200 Len=0 MSS=1460 SACK_PERM=1 TSval=1127760429 TSecr=0 WS=128
+   17 10.818588411  192.168.8.1 → 192.168.8.128 TCP 74 80 → 38962 [SYN, ACK] Seq=0 Ack=1 Win=28960 Len=0 MSS=1460 SACK_PERM=1 TSval=371693 TSecr=1127760429 WS=16
+   88 20.016977905 192.168.8.128 → 192.30.253.124 TCP 74 49312 → 443 [SYN] Seq=0 Win=29200 Len=0 MSS=1460 SACK_PERM=1 TSval=3762051014 TSecr=0 WS=128
+   89 20.075393439 192.30.253.124 → 192.168.8.128 TCP 74 443 → 49312 [SYN, ACK] Seq=0 Ack=1 Win=28480 Len=0 MSS=1300 SACK_PERM=1 TSval=1738838657 TSecr=3762051014 WS=1024
+  157 29.283388963 192.168.8.128 → 23.217.149.114 TCP 74 43922 → 443 [SYN] Seq=0 Win=29200 Len=0 MSS=1460 SACK_PERM=1 TSval=364092857 TSecr=0 WS=128
+  158 29.287442930 23.217.149.114 → 192.168.8.128 TCP 74 443 → 43922 [SYN, ACK] Seq=0 Ack=1 Win=28960 Len=0 MSS=1300 SACK_PERM=1 TSval=4160262549 TSecr=364092857 WS=128
+  280 41.055712175 192.168.8.128 → 192.168.8.1  TCP 74 38968 → 80 [SYN] Seq=0 Win=29200 Len=0 MSS=1460 SACK_PERM=1 TSval=1127790667 TSecr=0 WS=128
+  281 41.056057172  192.168.8.1 → 192.168.8.128 TCP 74 80 → 38968 [SYN, ACK] Seq=0 Ack=1 Win=28960 Len=0 MSS=1460 SACK_PERM=1 TSval=374717 TSecr=1127790667 WS=16
+  548 71.180007926 192.168.8.128 → 192.168.8.1  TCP 74 38970 → 80 [SYN] Seq=0 Win=29200 Len=0 MSS=1460 SACK_PERM=1 TSval=1127820790 TSecr=0 WS=128
+```
+
+Sample of parsed data (time of packet, ip address, packet type):
+
+```
+SYN Pack
+['24.595858259', '172.217.10.46', 'SYN']
+
+SYN Pack
+['24.961442733', '172.217.10.141', 'SYN']
+
+SYN Pack
+['24.964269644', '172.217.11.42', 'SYN']
+
+SYN ACK Pack
+['24.966016589', '192.168.8.128', 'SYN ACK']
+
+SYN ACK Pack
+['24.968836500', '192.168.8.128', 'SYN ACK']
+```
+
+Sample output: 
+
+```
+SYNC request sent to 172.217.12.206.
+ACK by by 192.168.8.128.
+SYNC request sent to 192.168.8.128.
+SYNC request sent to 151.139.128.14.
+ACK by by 192.168.8.128.
+SYNC request sent to 172.217.9.234.
+ACK by by 192.168.8.128.
+SYNC request sent to 104.19.199.151.
+```
