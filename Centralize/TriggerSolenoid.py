@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-from gpiozero import Button
-from signal import pause
 import RPi.GPIO as GPIO
 from time import sleep
 
