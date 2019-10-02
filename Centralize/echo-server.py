@@ -9,7 +9,7 @@ local_hostname = socket.gethostname()
 print(local_hostname)
 ip_address = socket.gethostbyname(local_hostname)
 print(ip_address)
-server_address = ('192.168.1.5', 10000)
+server_address = ('192.168.8.145', 10000)
 print >>sys.stderr, 'starting up on %s port %s' % server_address
 sock.bind(server_address)
 
@@ -21,5 +21,6 @@ while True:
     print >>sys.stderr, data
 
     if data:
+        print "data recvd"
         sent = sock.sendto(data, address)
         print >>sys.stderr, 'sent %s bytes back to %s' % (sent, address)
