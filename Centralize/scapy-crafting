@@ -1,0 +1,7 @@
+# udp send
+send(IP(dst="127.0.0.1")/UDP(dport=123)/Raw(load="abc"))
+
+# broadcast
+send(IP(dst="127.0.0.255")/UDP(dport=123)/Raw(load="abc"))
+
+

@@ -1,0 +1,6 @@
+iptables -A INPUT -p udp -m udp --dport 10000 -j ACCEPT
+iptables -A INPUT -p udp -m udp --sport 10000 -j ACCEPT
+iptables -A OUTPUT -p udp -m udp --sport 10000 -j ACCEPT
+iptables -A OUTPUT -p udp -m udp --dport 10000 -j ACCEPT
+
+
