@@ -1,51 +1,34 @@
-/******************************************************************************
-Flex_Sensor_Example.ino
-Example sketch for SparkFun's flex sensors
-  (https://www.sparkfun.com/products/10264)
-Jim Lindblom @ SparkFun Electronics
-April 28, 2016
+int potPin0 = 0;    // select the input pin for the potentiometer
+int potPin1 = 1;
+int potPin2 = 2;
+int potPin3 = 3;
 
-Create a voltage divider circuit combining a flex sensor with a 47k resistor.
-- The resistor should connect from A0 to GND.
-- The flex sensor should connect from A0 to 3.3V
-As the resistance of the flex sensor increases (meaning it's being bent), the
-voltage at A0 should decrease.
+int val0 = 0;       // variable to store the value coming from the sensor
+int val1 = 0;
+int val2 = 0;
+int val3 = 0;
 
-Development environment specifics:
-Arduino 1.6.7
-******************************************************************************/
-const int FLEX_PIN = A0; // Pin connected to voltage divider output
 
-// Measure the voltage at 5V and the actual resistance of your
-// 47k resistor, and enter them below:
-const float VCC = 4.98; // Measured voltage of Ardunio 5V line
-const float R_DIV = 47500.0; // Measured resistance of 3.3k resistor
-
-// Upload the code, then try to adjust these values to more
-// accurately calculate bend degree.
-const float STRAIGHT_RESISTANCE = 37300.0; // resistance when straight
-const float BEND_RESISTANCE = 90000.0; // resistance at 90 deg
-
-void setup() 
-{
+void setup() {
   Serial.begin(9600);
-  pinMode(FLEX_PIN, INPUT);
 }
 
-void loop() 
-{
-  // Read the ADC, and calculate voltage and resistance from it
-  int flexADC = analogRead(FLEX_PIN);
-  float flexV = flexADC * VCC / 1023.0;
-  float flexR = R_DIV * (VCC / flexV - 1.0);
-  Serial.println("Resistance: " + String(flexR) + " ohms");
-
-  // Use the calculated resistance to estimate the sensor's
-  // bend angle:
-  float angle = map(flexR, STRAIGHT_RESISTANCE, BEND_RESISTANCE,
-                   0, 90.0);
-  Serial.println("Bend: " + String(angle) + " degrees");
-  Serial.println();
-
-  delay(500);
+void loop() {
+  val0 = analogRead(potPin0);    // read the value from the sensor
+  val1 = analogRead(potPin1);
+  val2 = analogRead(potPin2);
+  val3 = analogRead(potPin3);
+  
+// Serial.print(val);
+//  Serial.println();
+  val0 = val0/4;
+  val1 = val1/4;
+  val2 = val2/4;    
+  val3 = val3/4;    
+//  Seria/l.write(val);
+  Serial.write(val0);
+  Serial.write(val1);
+  Serial.write(val2);
+  Serial.write(val3);
+  delay(100);
 }
