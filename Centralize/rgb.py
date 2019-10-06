@@ -8,7 +8,7 @@ class light(object):
     def __init__(self, color):
         self.color = color
 
-    def fadeIn():
+    def fadeIn(self):
         if self.color == 'red':
             for i in range(10):
                 led.red = i/10
@@ -24,10 +24,10 @@ class light(object):
                 led.blue = i/10
                 sleep(0.1)
 
-    def fadeOut():
+    def fadeOut(self):
         if self.color == 'red':
-            for i in range(10,0):
-                led.red = i/10
+            for i in range(10,0,-1):
+                led.red = 10-i/10
                 sleep(0.1)
 
         if self.color == 'green':
@@ -41,4 +41,4 @@ class light(object):
                 sleep(0.1)
 
 led = light('red')
-led.fadeIn
+led.fadeOut()
