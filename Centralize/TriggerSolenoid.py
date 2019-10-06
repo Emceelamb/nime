@@ -2,7 +2,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-
 class Solenoid(object):
     def __init__(self, pin):
         self.pin = pin
