@@ -2,8 +2,9 @@
 from gpiozero import RGBLED
 from time import sleep
 
-class light(object):
-    led = RGBLED(red=22, green=9, blue=10)
+led = RGBLED(red=22, green=9, blue=10)
+class Indicator(object):
+#    led = RGBLED(red=22, green=9, blue=10)
 
     def __init__(self, color):
         self.color = color
@@ -40,5 +41,3 @@ class light(object):
                 led.blue = i/10
                 sleep(0.1)
 
-led = light('red')
-led.fadeOut()

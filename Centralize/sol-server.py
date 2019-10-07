@@ -2,8 +2,10 @@
 import socket
 import sys
 from TriggerSolenoid import *
+from Indicator import *
 
 sol = Solenoid(4)
+indicator = Indicator('red')
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -30,4 +32,6 @@ while True:
         sent = sock.sendto(data, address)
         print('sent %s bytes back to %s' % (sent, address))
         print("solenoid triggered")
+
+        indicator.fadeIn()
         sol.trigger()
