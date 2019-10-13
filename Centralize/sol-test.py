@@ -2,13 +2,13 @@
 from gpiozero import Button
 from signal import pause
 from TriggerSolenoid import *
-import rgb
+from Indicator import *
 
 button = Button(3)
-sol = Solenoid(4)
+solenoid = Solenoid(4)
 
-indicator = new rgb.light(red)
+indicator = Indicator("red")
 
-button.when_pressed = sol.trigger
-button.when_press = indicator.fadeIn
+button.when_pressed = solenoid.trigger
+#button.when_pressed = indicator.fadeIn
 pause()
