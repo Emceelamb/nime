@@ -1,4 +1,4 @@
-#N canvas 648 383 450 300 10;
+#N canvas 224 514 789 372 10;
 #X obj 72 24 midiin;
 #X obj 67 182 midiout;
 #X msg 146 19 read dialup.mid;
@@ -10,16 +10,22 @@
 #X msg 159 98 pause;
 #X obj 248 234 noteout;
 #X floatatom 264 201 5 0 0 0 - - -;
-#X obj 353 34 cyclone;
+#X obj 7 9 cyclone;
 #X obj 142 151 seq dialup.mid;
-#X obj 724 153 bng 15 250 50 0 empty empty empty 0 -6 0 10 -228856
--1 -1;
-#X obj 613 90 bng 22 250 50 0 empty bng_play empty 17 7 0 10 -216373
+#X obj 475 96 bng 15 250 50 0 empty empty empty 0 -6 0 10 -228856 -1
+-1;
+#X obj 363 34 bng 22 250 50 0 empty bng_play empty 17 7 0 10 -216373
 -66577 -1;
-#X obj 657 154 midiout;
-#X obj 613 154 print;
-#X msg 649 94 stop;
-#X obj 613 125 cyclone/seq dialup.mid;
+#X obj 408 97 midiout;
+#X obj 364 97 print;
+#X msg 400 37 stop;
+#X obj 364 68 cyclone/seq dialup.mid;
+#X obj 414 233 netsend 1;
+#X msg 419 200 connect 192.168.8.170 10000;
+#X obj 354 139 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 413 154 send \$1;
+#X obj 387 131 sel 128;
 #X connect 0 0 1 0;
 #X connect 0 0 11 0;
 #X connect 2 0 11 0;
@@ -35,4 +41,9 @@
 #X connect 16 0 17 0;
 #X connect 17 0 14 0;
 #X connect 17 0 15 0;
+#X connect 17 0 20 0;
+#X connect 17 0 22 0;
 #X connect 17 1 12 0;
+#X connect 19 0 18 0;
+#X connect 21 0 18 0;
+#X connect 22 0 21 0;
