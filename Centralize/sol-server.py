@@ -3,9 +3,11 @@ import socket
 import sys
 from TriggerSolenoid import *
 from Indicator import *
+from ServoMotor import *
 
 sol = Solenoid(4)
 indicator = Indicator('red')
+#servo = ServoMotor(21, "low")
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -31,7 +33,12 @@ while True:
         print("data recvd")
         sent = sock.sendto(data, address)
         print('sent %s bytes back to %s' % (sent, address))
-        print("solenoid triggered")
 
-        indicator.fadeIn()
-        sol.trigger()
+        if data == b"servo;\n":
+            swipe()
+            print("Servod")
+        else:
+            #indicator.fadeIn()
+            sol.trigger()
+            print("solenoid triggered")
+

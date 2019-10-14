@@ -13,7 +13,7 @@ class Indicator(object):
         if self.color == 'red':
             for i in range(10):
                 led.red = i/10
-                sleep(0.1)
+#                sleep(0.1)
 
         if self.color == 'green':
             for i in range(10):
