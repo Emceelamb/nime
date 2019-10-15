@@ -38,7 +38,7 @@ while True:
             swipe()
             print("Servod")
         else:
-            #indicator.fadeIn()
+            indicator.fadeIn()
             sol.trigger()
             print("solenoid triggered")
 
