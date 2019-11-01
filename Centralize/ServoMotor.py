@@ -8,7 +8,7 @@ class ServoMotor(object):
 
     def __init__(self, pin):
         servo = Servo(pin)
-        print("Servo is on pin " + str(pin))
+#        print("Servo is on pin " + str(pin))
         self.position = position
 
     def sweep(self):

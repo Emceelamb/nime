@@ -8,7 +8,7 @@ class Solenoid(object):
         self.pin = pin
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(pin, GPIO.OUT)
-        print("Solenoid is set to " + str(self.pin))
+#        print("Solenoid is set to " + str(self.pin))
 
     def trigger(self):
 #        timeout = int(round(time.time() * 1000))+100
