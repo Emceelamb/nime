@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Ethernet is connected!"
+
+python3 rgb.py
