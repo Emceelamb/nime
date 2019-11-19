@@ -131,12 +131,12 @@ void toggleSwitch(int sw, int sw_state, int sw_prev, bool sw_send) {
   if (sw_state != sw_prev) {
     if (sw_state == HIGH) {
       //      sw_send = true;
-      Serial.print(sw);
-      Serial.println(" on");
+//      Serial.print(sw);
+//      Serial.println(" on");
       //      Serial.println(sw_send);
     } else {
-      Serial.print(sw);
-      Serial.println(" off");
+//      Serial.print(sw);
+//      Serial.println(" off");
       //      sw_send = false;
     }
     delay(50);
@@ -146,11 +146,14 @@ void toggleSwitch(int sw, int sw_state, int sw_prev, bool sw_send) {
 void sendVal(int sw, int sw_send, int knobval) {
   //  Serial.println(sw_send);
   if (sw_send == true) {
-    Serial.print(sw);
-    Serial.print(", ");
-    Serial.print(sw_send);
-    Serial.print(", ");
-    Serial.println(knobval);
+//    Serial.print(sw);
+//    Serial.print(", ");
+//    Serial.print(sw_send);
+//    Serial.print(", ");
+//    Serial.println(knobval);
+
+    Serial.write(knobval);
+    
   }
   //  Serial.println(knob);
 }
