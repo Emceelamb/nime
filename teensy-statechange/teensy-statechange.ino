@@ -22,7 +22,7 @@ void loop() {
       Serial.println("on");
     } else {
       Serial.println("off");
-    }
-  }
+  }    }
+
   switchPrev = switchState;
  }
