@@ -1,0 +1,40 @@
+#!/bin/bash
+
+camera=$1
+center="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=0"
+machine1="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=0"
+machine2="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=0"
+machine3="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=0"
+machine4="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=0"
+machine5="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=0"
+you="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=0"
+case $camera in
+    machine-1)
+        curl $machine1
+        echo Watching feed $camera.
+        ;;
+    machine-2)
+        curl $machine2
+        echo Watching feed $camera.
+        ;;
+    machine-3)
+        curl $machine3
+        echo Watching feed $camera.
+        ;;
+    machine-4)
+        curl $machine4
+        echo Watching feed $camera.
+        ;;
+    machine-5)
+        curl $machine5
+        echo Watching feed $camera.
+        ;;
+    you)
+        curl $you
+        echo Watching $camera.
+        ;;
+    *)
+        curl $center
+        echo Watching all.
+        ;;
+esac
