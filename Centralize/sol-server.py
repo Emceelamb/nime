@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import socket
 import sys
 from TriggerSolenoid import *
@@ -31,14 +30,23 @@ server_address = ('', 10000)
 print('Starting server on%s port %s' % server_address)
 sock.bind(server_address)
 
+# lookup remote host
+def lookup(addr):
+    try:
+        return str(socket.gethostbyaddr(addr))
+    except socket.herror:
+        return str(addr)
+
 if __name__ == '__main__':
     signal(SIGINT, handler)
 
     while True:
         print(Fore.YELLOW+'\nwaiting to receive message'+Style.RESET_ALL)
         data, address = sock.recvfrom(4096)
-        remoteHost =  socket.gethostbyaddr(address[0])
-        print('\nreceived ' + '%s from ' % data.decode("utf-8") + Fore.RED+'%s'  % remoteHost[0])
+        #remoteHost =  socket.gethostbyaddr()
+        remoteHost =  lookup(address[0])
+        print('\nreceived ' + '%s from ' % data.decode("utf-8") + Fore.RED+'%s'  % remoteHost)
+        #print('\nreceived ' + '%s from ' % data.decode("utf-8") + Fore.RED+'%s'  % str(address[0]))
 
         if data:
             sent = sock.sendto(data, address)
