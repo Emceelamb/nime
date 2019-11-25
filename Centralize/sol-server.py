@@ -33,9 +33,9 @@ sock.bind(server_address)
 # lookup remote host
 def lookup(addr):
     try:
-        return str(socket.gethostbyaddr(addr))
+        return socket.gethostbyaddr(addr)
     except socket.herror:
-        return str(addr)
+        return addr
 
 if __name__ == '__main__':
     signal(SIGINT, handler)
@@ -45,7 +45,7 @@ if __name__ == '__main__':
         data, address = sock.recvfrom(4096)
         #remoteHost =  socket.gethostbyaddr()
         remoteHost =  lookup(address[0])
-        print('\nreceived ' + '%s from ' % data.decode("utf-8") + Fore.RED+'%s'  % remoteHost)
+        print('\nreceived ' + '%s from ' % data.decode("utf-8") + Fore.RED+'%s'  % str(remoteHost[0]))
         #print('\nreceived ' + '%s from ' % data.decode("utf-8") + Fore.RED+'%s'  % str(address[0]))
 
         if data:
