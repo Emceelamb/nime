@@ -7,12 +7,12 @@ from ServoMotor import *
 from signal import signal, SIGINT
 from sys import exit
 from colorama import Fore, Style
+import time
+import threading
+import gpiozero
 
-def handler(signal_received, frame):
-    # Handle any cleanup here
-    print(Fore.GREEN+'Server shutting down... Goodbye.'+Style.RESET_ALL)
-    exit(0)
 
+# Set solenoid pins
 sol = Solenoid(4)
 indicator = Indicator('red')
 #servo = ServoMotor(21, "low")
@@ -37,6 +37,42 @@ def lookup(addr):
     except socket.herror:
         return addr
 
+# Goodbye message
+
+def handler(signal_received, frame):
+    # Handle any cleanup here
+    print(Fore.GREEN+'Server shutting down... Goodbye.'+Style.RESET_ALL)
+    exit(0)
+
+# LEDs
+RELAY_PIN = 26
+relay = gpiozero.OutputDevice(RELAY_PIN, active_high=False, initial_value=False)
+relay_state = 0
+
+"""
+def toggle_relay():
+    relay.on()
+    if(timer.is_alive() is True):
+        timer.cancel()
+        relay.off()
+    else: 
+        timer.start()
+
+timer = threading.Timer(1.0, toggle_relay)
+"""
+
+def toggle_relay():
+    global relay_state
+    if (relay_state == 0):
+        relay.on()
+        relay_state = 1
+    else:
+        relay.off()
+        relay_state = 0
+
+
+
+
 if __name__ == '__main__':
     signal(SIGINT, handler)
 
@@ -50,6 +86,7 @@ if __name__ == '__main__':
 
         if data:
             sent = sock.sendto(data, address)
+            toggle_relay()
 #            print('sent %s bytes back to %s' % (sent, address))
 
             if data == b"servo;\n":
