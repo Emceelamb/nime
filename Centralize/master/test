@@ -1,0 +1,36 @@
+#!/bin/bash
+
+node=$1
+node1=send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Woodblock"))
+node2=send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Woodblock"))
+node3=send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Woodblock"))
+node4=send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Woodblock"))
+node5=send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Woodblock"))
+node6=send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Woodblock"))
+
+case $node in
+    node1)
+        $node1
+        echo Node 1
+        ;;
+    node2)
+        $node2
+        echo Node 2
+        ;;
+    node3)
+        $node3
+        echo Node 3
+        ;;
+    node4)
+        $node4
+        echo Node 4
+        ;;
+    node5)
+        $node5
+        echo Node 5
+        ;;
+    node6)
+        $node6
+        echo all
+        ;;
+esac

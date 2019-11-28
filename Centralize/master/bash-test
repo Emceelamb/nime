@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+woodblock=192.168.8.228
+coffeetin=192.168.8.191
+goldtin=192.168.8.170
+woodspring=192.168.8.169
+servospring=192.168.8.155
+
+timeout="5"
+
+while [ $timeout -gt 1 ]; do
+    echo "Trigger" | nc -cu $woodblock 10000
+    let timout  "timeout=timeout- 1"
+    sleep $timeout
+done
+
