@@ -72,9 +72,21 @@ def toggle_relay():
 
 
 
+def startupSeq():
+    relay.on()
+    sol.trigger()
+    time.sleep(1)
+    sol.trigger()
+    time.sleep(1)
+    sol.trigger()
+    time.sleep(1)
+    relay.off()
+
 
 if __name__ == '__main__':
     signal(SIGINT, handler)
+
+    startupSeq()
 
     while True:
         print(Fore.YELLOW+'\nwaiting to receive message'+Style.RESET_ALL)
@@ -85,13 +97,10 @@ if __name__ == '__main__':
         #print('\nreceived ' + '%s from ' % data.decode("utf-8") + Fore.RED+'%s'  % str(address[0]))
 
         if data:
-            sent = sock.sendto(data, address)
             toggle_relay()
-#            print('sent %s bytes back to %s' % (sent, address))
 
             if data == b"servo;\n":
                 swipe()
             else:
                 indicator.fadeIn()
                 sol.trigger()
-
