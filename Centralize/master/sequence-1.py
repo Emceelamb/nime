@@ -2,9 +2,7 @@
 from scapy.all import *
 import time
 import random
-
-START_TIME = time.time()
-s = conf.L3socket(iface='enp60s0')
+import os
 
 woodblock = "192.168.8.228"
 coffeetin = "192.168.8.191"
@@ -16,43 +14,41 @@ def sendPackets(c=1, i=0):
     s.send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Trigger"), realtime=1, count=c, inter=i)
 
 def sendPacket(soundobject):
-    pkt=IP(dst=soundobject)/UDP(dport=10000)/Raw(load="Trigger")
-    s.send(pkt)
+    if soundobject == servospring:
+        p1 = os.popen('echo "servo;\n" | nc -cu '+ soundobject + ' 10000')
+        output = p1.read()
+
+    else:
+        p1 = os.popen('echo "trigger" | nc -cu '+ soundobject + ' 10000')
+        output = p1.read()
+
 
 def buildup():
     running = True
-    timelapse = 1
-    prevTime = START_TIME
-    sendPacket(woodblock)
+    timeout = 1
 
     while running:
         sendPacket(woodblock)
-        time.sleep(timelapse)
-        timelapse = timelapse - 0.1
-        if timelapse < 0.2:
-            for x in range (1,20):
+        time.sleep(timeout)
+        timeout = timeout - 0.1
+        if(timeout < 0.2):
+            for x in range (1, 20):
                 sendPacket(woodblock)
-                time.sleep(timelapse)
+                time.sleep(0.1)
             running = False
 
+def buildup_servo():
+    running = True
+    timeout = 5
+
+    while running:
+        sendPacket(servospring)
+        time.sleep(timeout)
+        timeout = timeout - 1
+        if(timeout < 1):
+            for x in range (1, 5):
+                sendPacket(servospring)
+                time.sleep(1)
+            running = False
 
 buildup()
-
-"""
-while True:
-    random_Number = random.randint(1,6)
-    for node in range(1,6):
-        if random_Number == 1:
-            send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Trigger"))
-        if random_Number == 2:
-            send(IP(dst="192.168.8.170")/UDP(dport=10000)/Raw(load="Trigger"))
-        if random_Number == 3:
-           send(IP(dst="192.168.8.169")/UDP(dport=10000)/Raw(load="Trigger!"))
-        if random_Number == 4:
-           send(IP(dst="192.168.8.155")/UDP(dport=10000)/Raw(load="servo;\n"))
-        if random_Number == 5:
-           send(IP(dst="192.168.8.191")/UDP(dport=10000)/Raw(load="Trigger tin"))
-        if random_Number == 6:
-           send(IP(dst="192.168.8.255")/UDP(dport=10000)/Raw(load="servo;\n"))
-        time.sleep(random.random()/10)
-"""

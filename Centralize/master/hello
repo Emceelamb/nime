@@ -1,0 +1,40 @@
+#!/bin/bash
+
+machine=$1
+machine1=192.168.8.228
+machine2=192.168.8.170
+machine3=192.168.8.169
+machine4=192.168.8.155
+machine5=192.168.8.191
+
+case $machine in
+    machine-1)
+        echo "Hello, world." | nc -cu $machine1 10000
+        echo Ping Machine 1.
+        ;;
+    machine-2)
+        echo "Hello, world." | nc -cu $machine2 10000
+        echo Ping Machine 2.
+        ;;
+    machine-3)
+        echo "Hello, world." | nc -cu $machine3 10000
+        echo Ping Machine 3.
+        ;;
+    machine-4)
+        echo "Hello, world." | nc -cu $machine4 10000
+        echo Ping Machine 4.
+        ;;
+    machine-5)
+        echo "Hello, world." | nc -cu $machine5 10000
+        echo Ping Machine 5.
+        ;;
+
+    *)
+        echo "Hello, world." | nc -cu $machine1 10000
+        echo "Hello, world." | nc -cu $machine2 10000
+        echo "Hello, world." | nc -cu $machine3 10000
+        echo "Hello, world." | nc -cu $machine4 10000
+        echo "Hello, world." | nc -cu $machine5 10000
+        echo Broadcast network.
+        ;;
+esac
