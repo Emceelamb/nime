@@ -7,34 +7,61 @@ machine3=192.168.8.169
 machine4=192.168.8.155
 machine5=192.168.8.191
 
+number=$2
+pausetime=$3
+
 case $machine in
     machine-1)
-        echo "Hello, world." | nc -cu $machine1 10000
-        echo Ping Machine 1.
+        for i in $(seq "$number")
+        do
+            echo "Hello, $machine." | nc -cu $machine1 10000
+            echo -e "Ping \e[91mMachine 1 \e[39m$i times."
+            sleep $pausetime
+        done
         ;;
     machine-2)
-        echo "Hello, world." | nc -cu $machine2 10000
-        echo Ping Machine 2.
+        for i in $(seq "$number")
+        do
+            echo "Hello, $machine." | nc -cu $machine1 10000
+            echo -e "Ping \e[91mMachine 2 \e[39m$i times."
+            sleep $pausetime
+        done
         ;;
     machine-3)
-        echo "Hello, world." | nc -cu $machine3 10000
-        echo Ping Machine 3.
+        for i in $(seq "$number")
+        do
+            echo "Hello, $machine." | nc -cu $machine1 10000
+            echo -e "Ping \e[91mMachine 3 \e[39m$i times."
+            sleep $pausetime
+        done
         ;;
     machine-4)
-        echo "Hello, world." | nc -cu $machine4 10000
-        echo Ping Machine 4.
+        for i in $(seq "$number")
+        do
+            echo "Hello, $machine." | nc -cu $machine1 10000
+            echo -e "Ping \e[91mMachine 4 \e[39m$i times."
+            sleep $pausetime
+        done
         ;;
     machine-5)
-        echo "Hello, world." | nc -cu $machine5 10000
-        echo Ping Machine 5.
+        for i in $(seq "$number")
+        do
+            echo "Hello, $machine." | nc -cu $machine1 10000
+            echo -e "Ping \e[91mMachine 5 \e[39m$i times."
+            sleep $pausetime
+        done
         ;;
 
     *)
-        echo "Hello, world." | nc -cu $machine1 10000
-        echo "Hello, world." | nc -cu $machine2 10000
-        echo "Hello, world." | nc -cu $machine3 10000
-        echo "Hello, world." | nc -cu $machine4 10000
-        echo "Hello, world." | nc -cu $machine5 10000
-        echo Broadcast network.
+        for i in $(seq "$number")
+        do
+            echo "Hello, world." | nc -cu $machine1 10000
+            echo "Hello, world." | nc -cu $machine2 10000
+            echo "Hello, world." | nc -cu $machine3 10000
+            echo "Hello, world." | nc -cu $machine4 10000
+            echo "Hello, world." | nc -cu $machine5 10000
+            echo -e "\e[91mBroadcast network $i times."
+            sleep $pausetime
+        done
         ;;
 esac
