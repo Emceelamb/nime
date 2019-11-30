@@ -102,5 +102,6 @@ if __name__ == '__main__':
             if data == b"servo;\n":
                 swipe()
             else:
+                swipe()
                 indicator.fadeIn()
                 sol.trigger()
