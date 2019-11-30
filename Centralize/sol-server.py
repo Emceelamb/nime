@@ -42,6 +42,7 @@ def lookup(addr):
 def handler(signal_received, frame):
     # Handle any cleanup here
     print(Fore.GREEN+'Server shutting down... Goodbye.'+Style.RESET_ALL)
+    relay.close()
     exit(0)
 
 # LEDs
