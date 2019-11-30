@@ -74,11 +74,11 @@ def toggle_relay():
 
 def startupSeq():
     relay.on()
-    sol.trigger()
+    swipe()
     time.sleep(1)
-    sol.trigger()
+    swipe()
     time.sleep(1)
-    sol.trigger()
+    swipe()
     time.sleep(1)
     relay.off()
 
