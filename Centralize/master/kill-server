@@ -1,0 +1,31 @@
+#!/bin/bash
+
+server=$1
+
+
+case $server in
+    1)
+	ssh tumbleweed@192.168.8.228 nime/Centralize/sol-server.py
+	echo Starting server 1.
+        ;;
+    2)
+	ssh tumbleweed@192.168.8.170 nime/Centralize/sol-server.py
+	echo Starting server 2.
+        ;;
+    3)
+	ssh tumbleweed@192.168.8.169 nime/Centralize/sol-server.py
+	echo Starting server 3.
+        ;;
+    4)
+	ssh tumbleweed@192.168.8.155 nime/Centralize/sol-server.py
+	echo Starting server 4.
+        ;;
+    5)
+	ssh tumbleweed@192.168.8.191 nime/Centralize/sol-server.py
+	echo Starting server 5.
+        ;;
+
+    *)
+        echo Could not start server.
+        ;;
+esac

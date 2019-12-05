@@ -99,6 +99,9 @@ if __name__ == '__main__':
         if data:
             toggle_relay()
 
+            if data == "kill lights":
+                relay.off()
+
             if data == b"servo;\n":
                 swipe()
             else:

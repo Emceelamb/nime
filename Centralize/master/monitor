@@ -3,7 +3,7 @@
 camera=$1
 
 feed0="192.168.8.119/axis-cgi/com/ptz.cgi?pan=-10&tilt=8&zoom=0"
-feed1="192 Networks .168.8.119/axis-cgi/com/ptz.cgi?pan=1&tilt=0&zoom=700"
+feed1="192.168.8.119/axis-cgi/com/ptz.cgi?pan=1&tilt=0&zoom=700"
 feed2="192.168.8.119/axis-cgi/com/ptz.cgi?pan=0&tilt=11&zoom=1200"
 feed3="192.168.8.119/axis-cgi/com/ptz.cgi?pan=-15&tilt=13&zoom=1000"
 feed4="192.168.8.119/axis-cgi/com/ptz.cgi?pan=-10&tilt=0&zoom=800"
@@ -39,17 +39,17 @@ case $camera in
     loop)
         echo Starting loop.
         curl $feed0
-        sleep 3s
+        sleep 1s
         curl $feed1
-        sleep 3s
+        sleep 1s
         curl $feed2
-        sleep 3s
+        sleep 1s
         curl $feed3
-        sleep 3s
+        sleep 1s
         curl $feed4
-        sleep 3s
+        sleep 1s
         curl $feed5
-        sleep 3s
+        sleep 1s
         curl $feed0
         sleep 3s
         curl $you

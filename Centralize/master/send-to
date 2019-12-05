@@ -19,7 +19,6 @@ feed5="192.168.8.119/axis-cgi/com/ptz.cgi?pan=1&tilt=0&zoom=700"
 
 case $machine in
     machine-1)
-#        curl -q $feed1
         for i in $(seq "$number")
         do
             echo "Hello, $machine." | nc -cu $machine1 10000
@@ -28,7 +27,6 @@ case $machine in
         done
         ;;
     machine-2)
-#        curl -q $feed2
         for i in $(seq "$number")
         do
             echo "Hello, $machine." | nc -cu $machine2 10000
@@ -37,7 +35,6 @@ case $machine in
         done
         ;;
     machine-3)
-#        curl -q $feed3
         for i in $(seq "$number")
         do
             echo "Hello, $machine." | nc -cu $machine3 10000
@@ -46,7 +43,6 @@ case $machine in
         done
         ;;
     machine-4)
- #       curl -q $feed4
         for i in $(seq "$number")
         do
             echo "Hello, $machine." | nc -cu $machine4 10000
@@ -55,7 +51,6 @@ case $machine in
         done
         ;;
     machine-5)
-  #      curl -q $feed5
         for i in $(seq "$number")
         do
             echo "Hello, $machine." | nc -cu $machine5 10000
@@ -66,27 +61,22 @@ case $machine in
     cycle)
         for i in $(seq "$number")
         do
-            curl -q $feed1
             echo "Hello, $machine." | nc -cu $machine1 10000
             echo -e "Ping \e[91mMachine 5 \e[39m$i times."
             sleep $pausetime
 
-            curl -q $feed2
             echo "Hello, $machine." | nc -cu $machine2 10000
             echo -e "Ping \e[91mMachine 5 \e[39m$i times."
             sleep $pausetime
 
-            curl -q $feed3
             echo "Hello, $machine." | nc -cu $machine3 10000
             echo -e "Ping \e[91mMachine 5 \e[39m$i times."
             sleep $pausetime
 
-            curl -q $feed4
             echo "Hello, $machine." | nc -cu $machine4 10000
             echo -e "Ping \e[91mMachine 5 \e[39m$i times."
             sleep $pausetime
 
-            curl -q $feed5
             echo "Hello, $machine." | nc -cu $machine5 10000
             echo -e "Ping \e[91mMachine 5 \e[39m$i times."
             sleep $pausetime

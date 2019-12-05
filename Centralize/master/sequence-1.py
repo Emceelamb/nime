@@ -3,6 +3,7 @@ from scapy.all import *
 import time
 import random
 import os
+import sys
 
 woodblock = "192.168.8.228"
 coffeetin = "192.168.8.191"
@@ -26,16 +27,25 @@ def sendPacket(soundobject):
 def buildup():
     running = True
     timeout = 1
-
+    if(sys.argv[1]=="machine-1"):
+        target = "192.168.8.228"
+    if(sys.argv[1]=="machine-2"):
+        target = "192.168.8.170"
+    if(sys.argv[1]=="machine-3"):
+        target = "192.168.8.169"
+    if(sys.argv[1]=="machine-4"):
+        target = "192.168.8.155"
+    if(sys.argv[1]=="machine-5"):
+        target = "192.168.8.191"
     while running:
-        sendPacket(woodblock)
-        time.sleep(timeout)
-        timeout = timeout - 0.1
-        if(timeout < 0.2):
-            for x in range (1, 20):
-                sendPacket(woodblock)
-                time.sleep(0.1)
-            running = False
+            sendPacket(target)
+            time.sleep(timeout)
+            timeout = timeout - 0.1
+            if (timeout < 0.05):
+                for x in range (1, 20):
+                    sendPacket(target)
+                    time.sleep(0.02)
+                running = False
 
 def buildup_servo():
     running = True
@@ -51,4 +61,29 @@ def buildup_servo():
                 time.sleep(1)
             running = False
 
-buildup()
+
+def buildup_everyone():
+    running = True
+    timeout = 1
+
+    while running:
+        sendPacket("192.168.8.228")
+        sendPacket("192.168.8.170")
+        sendPacket("192.168.8.169")
+        sendPacket("192.168.8.155")
+        sendPacket("192.168.8.191")
+
+        if(timeout < 0.05):
+            for x in range (1, 20):
+                sendPacket("192.168.8.228")
+                sendPacket("192.168.8.170")
+                sendPacket("192.168.8.169")
+                sendPacket("192.168.8.155")
+                sendPacket("192.168.8.191")
+                time.sleep(0.02)
+            running = False
+
+if (sys.argv[1] == "everyone"):
+    buildup_everyone()
+else:
+    buildup()

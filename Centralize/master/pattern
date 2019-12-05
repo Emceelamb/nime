@@ -1,0 +1,17 @@
+#!/bin/bash
+
+"""
+pattern=$1
+
+case $pattern in
+    1)
+        for i in {1..6}; do ./hello machine-2 2 0.1  && ./hello machine-2 3 0.033 && ./hello machine-1 6 0.06 ./hello machine-2 6 0.06; done
+        ;;
+    *) 
+        echo Pick another pattern.
+        ;;
+esac
+"""
+
+
+for i in {1..6}; do ./hello machine-2 2 0.1  && ./hello machine-2 3 0.033 && ./hello everyone 6 0.06; done;

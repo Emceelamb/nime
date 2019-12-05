@@ -4,8 +4,6 @@ import time
 import random
 import sys
 import os
-from signal import signal, SIGINT
-from sys import exit
 
 machine1 = "192.168.8.228"
 machine2 = "192.168.169"
@@ -19,16 +17,10 @@ def sendPacket(machine):
     p1 = os.popen('echo "trigger" | nc -cu ' + machine + ' 10000')
     output = p1.read()
 
-def handler(signal_received, frame):
-    print("\nStoppng program...")
-    exit(0)
-
-if __name__ == '__main__':
-    signal(SIGINT, handler)
+while True:
+    random_Number = random.randint(1,6)
     
-    while True:
-        random_Number = random.randint(1,6)
-       
+    if (speed < 20):
         if random_Number == 1:
             #send(IP(dst="192.168.8.228")/UDP(dport=10000)/Raw(load="Trigger"))
             sendPacket(machine1)
@@ -52,4 +44,7 @@ if __name__ == '__main__':
             sendPacket(machine4)
             sendPacket(machine5)
            #send(IP(dst="192.168.8.255")/UDP(dport=10000)/Raw(load="servo;\n"))
-        time.sleep(random.random()/speed)
+    else:
+        break
+    time.sleep(random.random()/speed)
+    speed = speed + 0.1
