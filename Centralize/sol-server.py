@@ -42,6 +42,9 @@ def lookup(addr):
 def handler(signal_received, frame):
     # Handle any cleanup here
     print(Fore.GREEN+'Server shutting down... Goodbye.'+Style.RESET_ALL)
+
+    startupSeq()
+    startupSeq()
     relay.close()
     exit(0)
 
@@ -102,8 +105,10 @@ if __name__ == '__main__':
 
             if data == "kill lights":
                 relay.off()
+                print("killed")
 
-            if data == b"servo;\n":
+            
+            elif data == b"servo;\n":
                 swipe()
             else:
                 indicator.fadeIn()
